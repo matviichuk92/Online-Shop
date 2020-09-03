@@ -3,9 +3,9 @@ package online.shop.model;
 public class Product {
     private Long id;
     private String name;
-    private Double price;
+    private double price;
 
-    public Product(String name, Double price) {
+    public Product(String name, double price) {
         this.name = name;
         this.price = price;
     }
@@ -30,7 +30,7 @@ public class Product {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
