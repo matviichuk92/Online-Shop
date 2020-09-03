@@ -1,9 +1,9 @@
-package online.shop.service;
+package online.shop.service.impl;
 
 import java.util.List;
-import java.util.Optional;
 import online.shop.dao.ProductDao;
 import online.shop.model.Product;
+import online.shop.service.ProductService;
 import online.shop.service.lib.Inject;
 import online.shop.service.lib.Service;
 
@@ -18,8 +18,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Optional<Product> getById(Long productId) {
-        return productDao.getById(productId);
+    public Product getById(Long productId) {
+        return productDao.getById(productId).get();
     }
 
     @Override

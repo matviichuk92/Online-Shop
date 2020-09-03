@@ -1,5 +1,6 @@
 package online.shop.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingCard {
@@ -7,9 +8,9 @@ public class ShoppingCard {
     private List<Product> products;
     private Long userId;
 
-    public ShoppingCard(List<Product> products, long userId) {
-        this.products = products;
+    public ShoppingCard(Long userId) {
         this.userId = userId;
+        this.products = new ArrayList<>();
     }
 
     public Long getId() {
