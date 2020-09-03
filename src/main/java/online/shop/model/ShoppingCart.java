@@ -3,12 +3,12 @@ package online.shop.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShoppingCard {
+public class ShoppingCart {
     private Long id;
     private List<Product> products;
     private Long userId;
 
-    public ShoppingCard(Long userId) {
+    public ShoppingCart(Long userId) {
         this.userId = userId;
         this.products = new ArrayList<>();
     }

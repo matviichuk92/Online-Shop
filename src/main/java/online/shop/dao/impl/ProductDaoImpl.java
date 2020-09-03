@@ -2,10 +2,11 @@ package online.shop.dao.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 import online.shop.dao.ProductDao;
 import online.shop.db.Storage;
+import online.shop.lib.Dao;
 import online.shop.model.Product;
-import online.shop.service.lib.Dao;
 
 @Dao
 public class ProductDaoImpl implements ProductDao {
@@ -24,12 +25,9 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public Product update(Product product) {
-        List<Product> products = getAllProduct();
-        for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).getId().equals(product.getId())) {
-                products.set(i, product);
-            }
-        }
+        IntStream.range(0, Storage.products.size())
+                .filter(i -> Storage.products.get(i).getId().equals(product.getId()))
+                .forEach(i -> Storage.products.set(i, product));
         return product;
     }
 
@@ -39,7 +37,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public List<Product> getAllProduct() {
+    public List<Product> getAll() {
         return Storage.products;
     }
 }

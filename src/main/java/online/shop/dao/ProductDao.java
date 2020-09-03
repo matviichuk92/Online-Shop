@@ -13,6 +13,6 @@ public interface ProductDao {
 
     boolean deleteById(Long productId);
 
-    List<Product> getAllProduct();
+    List<Product> getAll();
 
 }

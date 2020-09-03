@@ -2,10 +2,10 @@ package online.shop.service.impl;
 
 import java.util.List;
 import online.shop.dao.ProductDao;
+import online.shop.lib.Inject;
+import online.shop.lib.Service;
 import online.shop.model.Product;
 import online.shop.service.ProductService;
-import online.shop.service.lib.Inject;
-import online.shop.service.lib.Service;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -34,6 +34,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> getAllProduct() {
-        return productDao.getAllProduct();
+        return productDao.getAll();
     }
 }

@@ -6,10 +6,10 @@ import java.util.List;
 public class Order {
     private Long id;
     private List<Product> products;
-    private Long usedId;
+    private Long userId;
 
     public Order(Long usedId) {
-        this.usedId = usedId;
+        this.userId = usedId;
         this.products = new ArrayList<>();
     }
 
@@ -29,11 +29,11 @@ public class Order {
         this.products = products;
     }
 
-    public Long getUsedId() {
-        return usedId;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUsedId(Long usedId) {
-        this.usedId = usedId;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }
