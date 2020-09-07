@@ -1,10 +1,8 @@
 package online.shop.service;
 
 import java.util.List;
-import online.shop.lib.Service;
 import online.shop.model.Product;
 
-@Service
 public interface ProductService {
     Product create(Product product);
 

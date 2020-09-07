@@ -24,7 +24,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> getAll(User user) {
+    public List<User> getAll() {
         return Storage.users;
     }
 
@@ -37,7 +37,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean deleteById(User user) {
-        return Storage.users.removeIf(someUser -> someUser.getId().equals(user.getId()));
+    public boolean deleteById(Long id) {
+        return Storage.users.removeIf(user -> user.getId().equals(id));
     }
 }

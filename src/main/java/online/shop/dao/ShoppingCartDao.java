@@ -6,7 +6,7 @@ import online.shop.model.ShoppingCart;
 public interface ShoppingCartDao {
     ShoppingCart create(ShoppingCart shoppingCart);
 
-    Optional<ShoppingCart> getByUser(Long userId);
+    Optional<ShoppingCart> getByUserById(Long userId);
 
     ShoppingCart update(ShoppingCart shoppingCart);
 
