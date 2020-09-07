@@ -5,8 +5,10 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 import online.shop.dao.OrderDao;
 import online.shop.db.Storage;
+import online.shop.lib.Dao;
 import online.shop.model.Order;
 
+@Dao
 public class OrderDaoImpl implements OrderDao {
     @Override
     public Order create(Order order) {

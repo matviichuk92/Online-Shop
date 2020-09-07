@@ -5,8 +5,10 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 import online.shop.dao.UserDao;
 import online.shop.db.Storage;
+import online.shop.lib.Dao;
 import online.shop.model.User;
 
+@Dao
 public class UserDaoImpl implements UserDao {
     @Override
     public User create(User user) {
