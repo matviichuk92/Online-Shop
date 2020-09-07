@@ -15,6 +15,6 @@ public class Application {
         productService.deleteById(gourmet.getId());
         whiskas.setPrice(10.00);
         productService.update(whiskas);
-        System.out.println("After update and delete: " + "\n" + productService.getAllProduct());
+        System.out.println("After update and delete: " + "\n" + productService.getAllProducts());
     }
 }

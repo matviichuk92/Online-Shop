@@ -14,5 +14,5 @@ public interface ProductService {
 
     boolean deleteById(Long productId);
 
-    List<Product> getAllProduct();
+    List<Product> getAllProducts();
 }
