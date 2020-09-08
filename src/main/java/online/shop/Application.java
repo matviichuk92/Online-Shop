@@ -11,13 +11,17 @@ import online.shop.service.UserService;
 
 public class Application {
     private static Injector injector = Injector.getInstance("online.shop");
+    private static ProductService productService =
+            (ProductService) injector.getInstance(ProductService.class);
+    private static UserService userService = (UserService) injector.getInstance(UserService.class);
+    private static ShoppingCartService shoppingCartService = (ShoppingCartService) injector
+            .getInstance(ShoppingCartService.class);
+    private static OrderService orderService =
+            (OrderService) injector.getInstance(OrderService.class);
+    private static Product whiskas = productService.create(new Product("Whiskas", 12.50));
+    private static Product gourmet = productService.create(new Product("Gourmet", 23.50));
 
     public static void main(String[] args) {
-        ProductService productService = (ProductService) injector.getInstance(ProductService.class);
-        Product whiskas = productService.create(new Product("Whiskas", 12.50));
-        Product gourmet = productService.create(new Product("Gourmet", 23.50));
-
-        UserService userService = (UserService) injector.getInstance(UserService.class);
         User roman = new User("Roman", "PapaCats", "cat123");
         User mila = new User("Mila", "MamaCats", "123");
         userService.create(roman);
@@ -27,8 +31,6 @@ public class Application {
         userService.update(mila);
         System.out.println("All users after update : " + userService.getAll());
 
-        ShoppingCartService shoppingCartService = (ShoppingCartService) injector
-                .getInstance(ShoppingCartService.class);
         ShoppingCart cart = new ShoppingCart(roman.getId());
         shoppingCartService.create(cart);
         shoppingCartService.addProduct(cart, whiskas);
@@ -39,7 +41,6 @@ public class Application {
         System.out.println("Shopping cart after delete : "
                 + shoppingCartService.getByUserId(roman.getId()));
 
-        OrderService orderService = (OrderService) injector.getInstance(OrderService.class);
         orderService.completeOrder(cart);
         System.out.println("Roman's order : " + orderService.getUserOrders(roman.getId()));
         orderService.delete(1L);

@@ -1,5 +1,6 @@
 package online.shop.dao.impl;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 import online.shop.dao.ShoppingCartDao;
@@ -16,10 +17,15 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
     }
 
     @Override
-    public Optional<ShoppingCart> getByUserById(Long userId) {
+    public Optional<ShoppingCart> getById(Long userId) {
         return Storage.shoppingCarts.stream()
                 .filter(shoppingCart -> shoppingCart.getUserId().equals(userId))
                 .findFirst();
+    }
+
+    @Override
+    public List<ShoppingCart> getAll() {
+        return Storage.shoppingCarts;
     }
 
     @Override
@@ -31,7 +37,7 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
     }
 
     @Override
-    public boolean deleteById(ShoppingCart shoppingCart) {
-        return Storage.shoppingCarts.removeIf(cart -> cart.getId().equals(shoppingCart.getId()));
+    public boolean deleteById(Long id) {
+        return Storage.shoppingCarts.removeIf(cart -> cart.getId().equals(id));
     }
 }
