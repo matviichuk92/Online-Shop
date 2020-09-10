@@ -3,12 +3,85 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+
     <servlet>
         <servlet-name>index</servlet-name>
         <servlet-class>online.shop.controller.IndexController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>index</servlet-name>
-        <url-pattern>/index</url-pattern>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>inject-data</servlet-name>
+        <servlet-class>online.shop.controller.InjectDataController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>inject-data</servlet-name>
+        <url-pattern>/injectData</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>registration</servlet-name>
+        <servlet-class>online.shop.controller.RegistrationController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>registration</servlet-name>
+        <url-pattern>/registration</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>add</servlet-name>
+        <servlet-class>online.shop.controller.ProductAddController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>add</servlet-name>
+        <url-pattern>/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>displayShoppingCart</servlet-name>
+        <servlet-class>online.shop.controller.ShoppingCartDisplayController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>displayShoppingCart</servlet-name>
+        <url-pattern>/shopping-cart</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addProductToCart</servlet-name>
+        <servlet-class>online.shop.controller.AddProductToShoppingCartController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addProductToCart</servlet-name>
+        <url-pattern>/shopping-cart/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>allUsers</servlet-name>
+        <servlet-class>online.shop.controller.UsersController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>allUsers</servlet-name>
+        <url-pattern>/users/all</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>allProduct</servlet-name>
+        <servlet-class>online.shop.controller.ProductGetAllController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>allProduct</servlet-name>
+        <url-pattern>/product/get-all</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>deleteUser</servlet-name>
+        <servlet-class>online.shop.controller.DeleteUserController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteUser</servlet-name>
+        <url-pattern>/users/delete</url-pattern>
     </servlet-mapping>
 </web-app>
