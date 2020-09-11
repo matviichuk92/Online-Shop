@@ -14,5 +14,8 @@ public interface ShoppingCartService {
 
     ShoppingCart getByUserId(Long userId);
 
-    boolean delete(Long id);
+    boolean deleteById(Long id);
+
+    boolean delete(ShoppingCart shoppingCart);
+
 }
