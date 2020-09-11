@@ -5,6 +5,6 @@
 </head>
 <body>
 <h1>Hello world! Current time is ${time}</h1>
-<a href="${pageContext.request.contextPath}/injectData">Inject test data into the DB</a>
+<a href="${pageContext.request.contextPath}/inject-data">Inject test data into the DB</a>
 </body>
 </html>

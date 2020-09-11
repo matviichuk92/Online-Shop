@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-public class ProductAddController extends HttpServlet {
+public class GetAllProductsController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("online.shop");
     private final ProductService productService =
             (ProductService) injector.getInstance(ProductService.class);
@@ -17,16 +18,8 @@ public class ProductAddController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/product/add.jsp").forward(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-        String name = req.getParameter("name");
-        String price = req.getParameter("price");
-        Product product = new Product(name, Double.parseDouble(price));
-        productService.create(product);
-        resp.sendRedirect(req.getContextPath() + "/");
+        List<Product> allProducts = productService.getAll();
+        req.setAttribute("products", allProducts);
+        req.getRequestDispatcher("/WEB-INF/views/product/get-all.jsp").forward(req, resp);
     }
 }

@@ -10,7 +10,7 @@ import online.shop.model.Product;
 import online.shop.service.ShoppingCartService;
 import javax.servlet.ServletException;
 
-public class ShoppingCartDisplayController extends HttpServlet {
+public class DisplayShoppingCartController extends HttpServlet {
     private static final Long USER_ID = 1L;
     private static final Injector injector = Injector.getInstance("online.shop");
     private final ShoppingCartService shoppingCartService = (ShoppingCartService) injector
