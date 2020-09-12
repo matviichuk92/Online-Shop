@@ -35,5 +35,8 @@
         </tr>
     </c:forEach>
 </table>
+<br>
+<form action="${pageContext.request.contextPath}/">
+    <input type="submit" value="Back to main page"><br></form>
 </body>
 </html>
