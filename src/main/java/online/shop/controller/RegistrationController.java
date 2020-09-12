@@ -1,15 +1,15 @@
 package online.shop.controller;
 
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import online.shop.lib.Injector;
 import online.shop.model.ShoppingCart;
 import online.shop.model.User;
 import online.shop.service.ShoppingCartService;
 import online.shop.service.UserService;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 public class RegistrationController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("online.shop");
