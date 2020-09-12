@@ -84,4 +84,13 @@
         <servlet-name>deleteUser</servlet-name>
         <url-pattern>/users/delete</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteProductFromShoppingCart</servlet-name>
+        <servlet-class>online.shop.controller.DeleteProductFromCartController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteProductFromShoppingCart</servlet-name>
+        <url-pattern>/shopping-cart/delete</url-pattern>
+    </servlet-mapping>
 </web-app>
