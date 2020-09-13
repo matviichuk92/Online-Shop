@@ -36,5 +36,7 @@
     <input type="submit" value="Back to main page"><br></form>
 <form action="${pageContext.request.contextPath}/product/all">
     <input type="submit" value="Continue to shopping"><br></form>
+<form action="${pageContext.request.contextPath}/order">
+    <input type="submit" value="Create order"><br></form>
 </body>
 </html>
