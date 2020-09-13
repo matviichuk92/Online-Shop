@@ -112,4 +112,49 @@
         <url-pattern>/details</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>displayAdminPage</servlet-name>
+        <servlet-class>online.shop.controller.admin.AdminController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>displayAdminPage</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getAllOrdersAdmin</servlet-name>
+        <servlet-class>online.shop.controller.admin.GetAllOrdersAdminController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getAllOrdersAdmin</servlet-name>
+        <url-pattern>/admin-order</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteAdminController</servlet-name>
+        <servlet-class>online.shop.controller.admin.DeleteOrderAdminController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteAdminController</servlet-name>
+        <url-pattern>/admin-order/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getAllProductAdmin</servlet-name>
+        <servlet-class>online.shop.controller.admin.GetAllProductAdminController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getAllProductAdmin</servlet-name>
+        <url-pattern>/admin-product</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteProductAdmin</servlet-name>
+        <servlet-class>online.shop.controller.admin.DeleteProductAdminController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteProductAdmin</servlet-name>
+        <url-pattern>/admin-product/delete</url-pattern>
+    </servlet-mapping>
+
 </web-app>

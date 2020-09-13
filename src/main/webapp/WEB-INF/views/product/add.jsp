@@ -11,5 +11,8 @@
     <input type="text" id="price" name="price"><br><br>
     <input type="submit" value="Add">
 </form>
+<br>
+<form action="${pageContext.request.contextPath}/admin">
+    <input type="submit" value="Back to admin page"><br></form>
 </body>
 </html>

@@ -6,9 +6,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import online.shop.lib.Injector;
+import online.shop.model.Order;
 import online.shop.model.Product;
 import online.shop.model.ShoppingCart;
 import online.shop.model.User;
+import online.shop.service.OrderService;
 import online.shop.service.ProductService;
 import online.shop.service.ShoppingCartService;
 import online.shop.service.UserService;
@@ -20,6 +22,8 @@ public class InjectDataController extends HttpServlet {
             .getInstance(ShoppingCartService.class);
     private final ProductService productService =
             (ProductService) injector.getInstance(ProductService.class);
+    private final OrderService orderService =
+            (OrderService) injector.getInstance(OrderService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -28,10 +32,20 @@ public class InjectDataController extends HttpServlet {
         User mila = new User("Mila", "MamaCat", "123");
         userService.create(roma);
         userService.create(mila);
-        productService.create(new Product("banana", 12.3));
-        productService.create(new Product("melon", 12.0));
-        shoppingCartService.create(new ShoppingCart(roma.getId()));
-        shoppingCartService.create(new ShoppingCart(mila.getId()));
+        Product banana = new Product("banana", 12.3);
+        Product melon = new Product("melon", 12.0);
+        productService.create(banana);
+        productService.create(melon);
+        ShoppingCart romaCart = new ShoppingCart(roma.getId());
+        ShoppingCart milaCart = new ShoppingCart(mila.getId());
+        shoppingCartService.create(romaCart);
+        shoppingCartService.create(milaCart);
+        shoppingCartService.addProduct(romaCart, banana);
+        shoppingCartService.addProduct(milaCart, melon);
+        Order orderRoma = new Order(roma.getId());
+        Order orderMila = new Order(mila.getId());
+        orderService.completeOrder(romaCart);
+        orderService.completeOrder(milaCart);
         req.getRequestDispatcher("/WEB-INF/views/inject-data.jsp").forward(req, resp);
     }
 }

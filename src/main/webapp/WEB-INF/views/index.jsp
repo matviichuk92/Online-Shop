@@ -18,6 +18,8 @@
         <input type="submit" value="See all products"><br></form>
     <form action="${pageContext.request.contextPath}/shopping-cart">
         <input type="submit" value="See shopping-cart"><br></form>
+    <form action="${pageContext.request.contextPath}/">
+        <input type="submit" value="admin page"><br></form>
 </body>
 </center>
 </html>

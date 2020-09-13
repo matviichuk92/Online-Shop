@@ -28,6 +28,5 @@ public class Application {
         shoppingCartService.create(shoppingCart1);
         shoppingCartService.create(shoppingCart);
 
-        System.out.println(shoppingCartService.getByUserId(mila.getId()));
     }
 }
