@@ -12,7 +12,7 @@
     <input type="submit" value="Continue to shopping"><br></form>
 <form action="${pageContext.request.contextPath}/shopping-cart">
     <input type="submit" value="Back to shopping-cart"><br></form>
-<form action="${pageContext.request.contextPath}/details">
+<form action="${pageContext.request.contextPath}/order/details">
     <input type="submit" value="See details order"><br></form>
 </body>
 </html>

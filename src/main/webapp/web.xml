@@ -109,7 +109,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>getDetailsOrder</servlet-name>
-        <url-pattern>/details</url-pattern>
+        <url-pattern>/order/details</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -127,7 +127,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>getAllOrdersAdmin</servlet-name>
-        <url-pattern>/admin-order</url-pattern>
+        <url-pattern>/admin/order</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -136,7 +136,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteAdminController</servlet-name>
-        <url-pattern>/admin-order/delete</url-pattern>
+        <url-pattern>/admin/order/delete</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -145,7 +145,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>getAllProductAdmin</servlet-name>
-        <url-pattern>/admin-product</url-pattern>
+        <url-pattern>/admin/product</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -154,6 +154,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteProductAdmin</servlet-name>
-        <url-pattern>/admin-product/delete</url-pattern>
+        <url-pattern>/admin/product/delete</url-pattern>
     </servlet-mapping>
 </web-app>

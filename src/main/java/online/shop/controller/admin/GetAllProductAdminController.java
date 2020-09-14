@@ -20,6 +20,6 @@ public class GetAllProductAdminController extends HttpServlet {
             throws ServletException, IOException {
         List<Product> allProducts = productService.getAll();
         req.setAttribute("products", allProducts);
-        req.getRequestDispatcher("WEB-INF/views/admin/product.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/admin/product.jsp").forward(req, resp);
     }
 }
