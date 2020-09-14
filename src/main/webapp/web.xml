@@ -156,5 +156,4 @@
         <servlet-name>deleteProductAdmin</servlet-name>
         <url-pattern>/admin-product/delete</url-pattern>
     </servlet-mapping>
-
 </web-app>
