@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1>You data will be adding to DB</h1>
-<form action="${pageContext.request.contextPath}/admin">
-    <input type="submit" value="Back to admin page"><br></form>
+<form action="${pageContext.request.contextPath}/">
+    <input type="submit" value="Back to main page"><br></form>
 </body>
 </html>
