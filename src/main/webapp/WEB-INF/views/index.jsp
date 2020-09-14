@@ -18,8 +18,12 @@
         <input type="submit" value="See all products"><br></form>
     <form action="${pageContext.request.contextPath}/shopping-cart">
         <input type="submit" value="See shopping-cart"><br></form>
-    <form action="${pageContext.request.contextPath}/admin">
-        <input type="submit" value="admin page"><br></form>
+    <form action="${pageContext.request.contextPath}/orders/all">
+        <input type="submit" value="See all orders"><br></form>
+    <form action="${pageContext.request.contextPath}/orders">
+        <input type="submit" value="See all orders Admin"><br></form>
+    <form action="${pageContext.request.contextPath}/products/manage">
+        <input type="submit" value="Manage products Admin"><br></form>
 </body>
 </center>
 </html>

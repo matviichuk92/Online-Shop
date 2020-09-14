@@ -18,7 +18,5 @@
     <input type="submit" value="Register">
 </form>
 <br>
-<form action="${pageContext.request.contextPath}/admin">
-    <input type="submit" value="Back to admin page"><br></form>
 </body>
 </html>

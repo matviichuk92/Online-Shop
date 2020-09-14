@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import online.shop.lib.Injector;
-import online.shop.model.Order;
 import online.shop.model.Product;
 import online.shop.model.ShoppingCart;
 import online.shop.model.User;
@@ -42,8 +41,6 @@ public class InjectDataController extends HttpServlet {
         shoppingCartService.create(milaCart);
         shoppingCartService.addProduct(romaCart, banana);
         shoppingCartService.addProduct(milaCart, melon);
-        Order orderRoma = new Order(roma.getId());
-        Order orderMila = new Order(mila.getId());
         orderService.completeOrder(romaCart);
         orderService.completeOrder(milaCart);
         req.getRequestDispatcher("/WEB-INF/views/inject-data.jsp").forward(req, resp);

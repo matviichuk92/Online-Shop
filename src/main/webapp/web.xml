@@ -100,7 +100,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>createOrder</servlet-name>
-        <url-pattern>/order</url-pattern>
+        <url-pattern>/order/complete</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -113,47 +113,47 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>displayAdminPage</servlet-name>
-        <servlet-class>online.shop.controller.admin.AdminController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>displayAdminPage</servlet-name>
-        <url-pattern>/admin</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>getAllOrdersAdmin</servlet-name>
-        <servlet-class>online.shop.controller.admin.GetAllOrdersAdminController</servlet-class>
+        <servlet-class>online.shop.controller.admin.GetAllOrdersController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>getAllOrdersAdmin</servlet-name>
-        <url-pattern>/admin/order</url-pattern>
+        <url-pattern>/orders</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>deleteAdminController</servlet-name>
-        <servlet-class>online.shop.controller.admin.DeleteOrderAdminController</servlet-class>
+        <servlet-class>online.shop.controller.admin.DeleteOrderController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteAdminController</servlet-name>
-        <url-pattern>/admin/order/delete</url-pattern>
+        <url-pattern>/orders/delete</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>getAllProductAdmin</servlet-name>
-        <servlet-class>online.shop.controller.admin.GetAllProductAdminController</servlet-class>
+        <servlet-name>getAllProduct</servlet-name>
+        <servlet-class>online.shop.controller.admin.ManageProductsController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>getAllProductAdmin</servlet-name>
-        <url-pattern>/admin/product</url-pattern>
+        <servlet-name>getAllProduct</servlet-name>
+        <url-pattern>/products/manage</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>deleteProductAdmin</servlet-name>
-        <servlet-class>online.shop.controller.admin.DeleteProductAdminController</servlet-class>
+        <servlet-class>online.shop.controller.admin.DeleteProductController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteProductAdmin</servlet-name>
-        <url-pattern>/admin/product/delete</url-pattern>
+        <url-pattern>/products/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getAllUserOrder</servlet-name>
+        <servlet-class>online.shop.controller.GetUsersOrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getAllUserOrder</servlet-name>
+        <url-pattern>/orders/all</url-pattern>
     </servlet-mapping>
 </web-app>

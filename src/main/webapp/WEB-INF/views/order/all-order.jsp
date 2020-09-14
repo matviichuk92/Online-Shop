@@ -5,27 +5,24 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Details orders</h1>
-<table border="1">
+<h1>Order details</h1>
+<table class="table">
     <tr>
-        <th>Order ID</th>
-        <th>List products</th>
-
-    <c:forEach var="order" items="${order}">
+        <th>ID</th>
+        <th>See details</th>
+    </tr>
+    <c:forEach var="order" items="${orders}">
         <tr>
             <td>
                 <c:out value="${order.id}"/>
             </td>
             <td>
-                <c:out value="${order.products}"/>
+                <a href="${pageContext.request.contextPath}/order/details?id=${order.id}">details</a>
             </td>
         </tr>
     </c:forEach>
 </table>
-<br>
 <form action="${pageContext.request.contextPath}/">
     <input type="submit" value="Back to main page"><br></form>
-<form action="${pageContext.request.contextPath}/product/all">
-    <input type="submit" value="Continue to shopping"><br></form>
 </body>
 </html>

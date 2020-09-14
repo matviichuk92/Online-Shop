@@ -23,6 +23,6 @@ public class CompleteOrderController extends HttpServlet {
             throws ServletException, IOException {
         ShoppingCart shoppingCart = shoppingCartService.getByUserId(USER_ID);
         orderService.completeOrder(shoppingCart);
-        req.getRequestDispatcher("/WEB-INF/order/order.jsp").forward(req, resp);
+        resp.sendRedirect(req.getContextPath() + "/");
     }
 }

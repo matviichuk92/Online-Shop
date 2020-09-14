@@ -10,7 +10,7 @@
     <tr>
         <th>User ID</th>
         <th>Order ID</th>
-        <th>List products</th>
+        <th>Details order</th>
         <th>Action</th>
 
         <c:forEach var="order" items="${orders}">
@@ -21,11 +21,11 @@
         <td>
             <c:out value="${order.id}"/>
         </td>
-        <td>
-            <c:out value="${order.products}"/>
-        </td>
     <td>
-        <a href="${pageContext.request.contextPath}/admin/order/delete?id=${order.id}">delete</a>
+        <a href="${pageContext.request.contextPath}/order/details?id=${order.id}">details</a>
+    </td>
+    <td>
+        <a href="${pageContext.request.contextPath}/orders/delete?id=${order.id}">delete</a>
     </td>
     </tr>
     </c:forEach>

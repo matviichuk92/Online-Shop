@@ -1,14 +1,16 @@
 package online.shop.controller.admin;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import online.shop.lib.Injector;
+import online.shop.model.Product;
 import online.shop.service.ProductService;
 
-public class DeleteProductAdminController extends HttpServlet {
+public class ManageProductsController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("online.shop");
     private final ProductService productService =
             (ProductService) injector.getInstance(ProductService.class);
@@ -16,9 +18,8 @@ public class DeleteProductAdminController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        String productId = req.getParameter("id");
-        Long id = Long.valueOf(productId);
-        productService.delete(id);
-        resp.sendRedirect(req.getContextPath() + "/admin/product");
+        List<Product> allProducts = productService.getAll();
+        req.setAttribute("products", allProducts);
+        req.getRequestDispatcher("/WEB-INF/views/product/product.jsp").forward(req, resp);
     }
 }

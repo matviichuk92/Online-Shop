@@ -17,7 +17,7 @@ public class AddProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/product/add.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/product/add.jsp").forward(req, resp);
     }
 
     @Override
@@ -27,6 +27,6 @@ public class AddProductController extends HttpServlet {
         String price = req.getParameter("price");
         Product product = new Product(name, Double.parseDouble(price));
         productService.create(product);
-        resp.sendRedirect(req.getContextPath() + "/");
+        resp.sendRedirect(req.getContextPath() + "/admin/product");
     }
 }
