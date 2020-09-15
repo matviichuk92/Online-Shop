@@ -10,7 +10,7 @@
     <tr>
         <th>User ID</th>
         <th>Order ID</th>
-        <th>Details order</th>
+        <th>Order details</th>
         <th>Action</th>
 
         <c:forEach var="order" items="${orders}">
@@ -31,7 +31,7 @@
     </c:forEach>
 </table>
 <br>
-<form action="${pageContext.request.contextPath}/admin">
-    <input type="submit" value="Back admin page"><br></form>
+<form action="${pageContext.request.contextPath}/">
+    <input type="submit" value="Back main page"><br></form>
 </body>
 </html>

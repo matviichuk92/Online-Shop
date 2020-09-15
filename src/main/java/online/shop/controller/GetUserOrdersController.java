@@ -10,7 +10,7 @@ import online.shop.lib.Injector;
 import online.shop.model.Order;
 import online.shop.service.OrderService;
 
-public class GetUsersOrderController extends HttpServlet {
+public class GetUserOrdersController extends HttpServlet {
     private static final Long USER_ID = 1L;
     private static final Injector injector = Injector.getInstance("online.shop");
     private final OrderService orderService =

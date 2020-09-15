@@ -8,7 +8,7 @@
 <h1>Order details</h1>
 <table class="table">
     <tr>
-        <th>ID</th>
+        <th>Product ID</th>
         <th>Name</th>
         <th>Price</th>
     </tr>

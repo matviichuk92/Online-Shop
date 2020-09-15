@@ -150,7 +150,7 @@
 
     <servlet>
         <servlet-name>getAllUserOrder</servlet-name>
-        <servlet-class>online.shop.controller.GetUsersOrderController</servlet-class>
+        <servlet-class>online.shop.controller.GetUserOrdersController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>getAllUserOrder</servlet-name>

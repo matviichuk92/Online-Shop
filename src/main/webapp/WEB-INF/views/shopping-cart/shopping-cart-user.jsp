@@ -5,7 +5,7 @@
     <title>User's shopping cart</title>
 </head>
 <body>
-<h1>All product in shopping cart</h1>
+<h1>All products in shopping cart</h1>
 
 <table border="1">
     <tr>

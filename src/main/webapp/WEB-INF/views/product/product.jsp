@@ -31,8 +31,6 @@
     </c:forEach>
 </table>
 <br>
-<form action="${pageContext.request.contextPath}/admin">
-    <input type="submit" value="Back to admin page"><br></form>
 <form action="${pageContext.request.contextPath}/">
     <input type="submit" value="Back to main page"><br></form>
 <form action="${pageContext.request.contextPath}/product/add">
