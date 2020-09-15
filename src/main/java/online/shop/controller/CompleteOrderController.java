@@ -11,7 +11,6 @@ import online.shop.service.OrderService;
 import online.shop.service.ShoppingCartService;
 
 public class CompleteOrderController extends HttpServlet {
-    private static final Long USER_ID = 1L;
     private static final Injector injector = Injector.getInstance("online.shop");
     private final ShoppingCartService shoppingCartService = (ShoppingCartService) injector
             .getInstance(ShoppingCartService.class);
@@ -21,7 +20,8 @@ public class CompleteOrderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        ShoppingCart shoppingCart = shoppingCartService.getByUserId(USER_ID);
+        Long userId = (Long) req.getSession().getAttribute("userId");
+        ShoppingCart shoppingCart = shoppingCartService.getByUserId(userId);
         orderService.completeOrder(shoppingCart);
         resp.sendRedirect(req.getContextPath() + "/shopping-cart");
     }
