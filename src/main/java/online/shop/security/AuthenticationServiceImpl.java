@@ -1,5 +1,6 @@
 package online.shop.security;
 
+import java.util.Optional;
 import online.shop.exception.AuthenticationException;
 import online.shop.lib.Inject;
 import online.shop.lib.Service;
@@ -13,10 +14,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public User login(String login, String password) throws AuthenticationException {
-        User userFromDB = userService.findByLogin(login).orElseThrow(() ->
-                new AuthenticationException("Incorrect login or password!"));
-        if (userFromDB.getPassword().equals(password) && userFromDB.getLogin().equals(login)) {
-            return userFromDB;
+        Optional<User> userFromDB = userService.findByLogin(login);
+        if (userFromDB.isPresent() && userFromDB.get().getPassword().equals(password)) {
+            return userFromDB.get();
         }
         throw new AuthenticationException("Incorrect login o password!");
     }
