@@ -33,7 +33,7 @@
 <br>
 <form action="${pageContext.request.contextPath}/">
     <input type="submit" value="Back to main page"><br></form>
-<form action="${pageContext.request.contextPath}/product/add">
+<form action="${pageContext.request.contextPath}/products/add">
     <input type="submit" value="Add product"><br></form>
 </body>
 </html>

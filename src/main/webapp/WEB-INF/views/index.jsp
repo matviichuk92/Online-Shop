@@ -20,13 +20,13 @@
         <input type="submit" value="See shopping-cart"><br></form>
     <form action="${pageContext.request.contextPath}/orders/all">
         <input type="submit" value="See all orders"><br></form>
-    <form action="${pageContext.request.contextPath}/product/all">
+    <form action="${pageContext.request.contextPath}/products/all">
         <input type="submit" value="See all products"><br></form>
     <br>
     <h2>Buttons for admin</h2>
     <form action="${pageContext.request.contextPath}/users/all">
         <input type="submit" value="See all users"><br></form>
-    <form action="${pageContext.request.contextPath}/product/add">
+    <form action="${pageContext.request.contextPath}/products/add">
         <input type="submit" value="Add product"><br></form>
     <form action="${pageContext.request.contextPath}/orders">
         <input type="submit" value="See all orders Admin"><br></form>
