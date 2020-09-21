@@ -1,32 +1,17 @@
 package online.shop;
 
-import online.shop.lib.Injector;
-import online.shop.model.ShoppingCart;
-import online.shop.model.User;
-import online.shop.service.OrderService;
-import online.shop.service.ProductService;
-import online.shop.service.ShoppingCartService;
-import online.shop.service.UserService;
+import online.shop.dao.jdbc.ProductDaoJdbsImpl;
+import online.shop.model.Product;
 
 public class Application {
-    private static Injector injector = Injector.getInstance("online.shop");
-    private static ProductService productService =
-            (ProductService) injector.getInstance(ProductService.class);
-    private static UserService userService = (UserService) injector.getInstance(UserService.class);
-    private static ShoppingCartService shoppingCartService = (ShoppingCartService) injector
-            .getInstance(ShoppingCartService.class);
-    private static OrderService orderService =
-            (OrderService) injector.getInstance(OrderService.class);
-
     public static void main(String[] args) {
-        User roman = new User("roma","roma","123");
-        User mila = new User("mila","mila","123");
-        userService.create(roman);
-        userService.create(mila);
-        ShoppingCart shoppingCart = new ShoppingCart(roman.getId());
-        ShoppingCart shoppingCart1 = new ShoppingCart(mila.getId());
-        shoppingCartService.create(shoppingCart1);
-        shoppingCartService.create(shoppingCart);
-
+        ProductDaoJdbsImpl productDaoJdbs = new ProductDaoJdbsImpl();
+        Product product = new Product("melon", 35);
+        product.setId(1L);
+        productDaoJdbs.create(product);
+        System.out.println(productDaoJdbs.getAll());
+        product.setPrice(23);
+        System.out.println(productDaoJdbs.update(product));
+        System.out.println(productDaoJdbs.getById(1L));
     }
 }
