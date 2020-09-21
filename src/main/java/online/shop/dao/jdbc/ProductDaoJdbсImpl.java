@@ -19,7 +19,7 @@ public class ProductDaoJdbсImpl implements ProductDao {
     @Override
     public Product create(Product product) {
         try (Connection connection = ConnectionUtil.getConnection()) {
-            String query = "INSERT INTO product_table (name, price) VALUES (?, ?);";
+            String query = "INSERT INTO products (name, price) VALUES (?, ?);";
             PreparedStatement statement =
                     connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, product.getName());
@@ -38,7 +38,7 @@ public class ProductDaoJdbсImpl implements ProductDao {
     @Override
     public Optional<Product> getById(Long id) {
         try (Connection connection = ConnectionUtil.getConnection()) {
-            String query = "SELECT * FROM product_table WHERE product_id = ? AND deleted = false;";
+            String query = "SELECT * FROM products WHERE product_id = ? AND deleted = false;";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
@@ -55,7 +55,7 @@ public class ProductDaoJdbсImpl implements ProductDao {
     public List<Product> getAll() {
         List<Product> products = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection()) {
-            String query = "SELECT * FROM product_table;";
+            String query = "SELECT * FROM products;";
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -71,7 +71,7 @@ public class ProductDaoJdbсImpl implements ProductDao {
     @Override
     public Product update(Product product) {
         try (Connection connection = ConnectionUtil.getConnection()) {
-            String query = "UPDATE product_table " +
+            String query = "UPDATE products " +
                     "SET name = ?, price = ? WHERE product_id = ? and deleted = false;";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, product.getName());
@@ -87,7 +87,7 @@ public class ProductDaoJdbсImpl implements ProductDao {
     @Override
     public boolean deleteById(Long id) {
         try (Connection connection = ConnectionUtil.getConnection()) {
-            String query = "UPDATE product_table SET deleted = true "
+            String query = "UPDATE products SET deleted = true "
                     + "WHERE product_id = ? AND deleted = false;";
             PreparedStatement statement =
                     connection.prepareStatement(query);
