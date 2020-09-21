@@ -17,21 +17,21 @@ import online.shop.util.ConnectionUtil;
 @Dao
 public class ProductDaoJdbsImpl implements ProductDao {
     @Override
-    public Product create(Product item) {
+    public Product create(Product product) {
         try (Connection connection = ConnectionUtil.getConnection()) {
             String query = "INSERT INTO product_table (name, price) VALUES (?, ?);";
             PreparedStatement statement =
                     connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, item.getName());
-            statement.setDouble(2, item.getPrice());
+            statement.setString(1, product.getName());
+            statement.setDouble(2, product.getPrice());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
-                item.setId(resultSet.getLong(1));
+                product.setId(resultSet.getLong(1));
             }
-            return item;
+            return product;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't add item!", e);
+            throw new DataProcessingException("Can't add item: " + product, e);
         }
     }
 
@@ -48,7 +48,7 @@ public class ProductDaoJdbsImpl implements ProductDao {
             }
             return Optional.empty();
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't find product by id!", e);
+            throw new DataProcessingException("Can't find product by id: " + id, e);
         }
     }
 
@@ -65,24 +65,24 @@ public class ProductDaoJdbsImpl implements ProductDao {
             }
             return products;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't get all product!", e);
+            throw new DataProcessingException("Can't get all products!", e);
         }
     }
 
     @Override
-    public Product update(Product item) {
+    public Product update(Product product) {
         try (Connection connection = ConnectionUtil.getConnection()) {
             String query = "UPDATE product_table "
                     + "SET name = ?, price = ? "
                     + "WHERE product_id = ?;";
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, item.getName());
-            statement.setDouble(2, item.getPrice());
-            statement.setLong(3, item.getId());
+            statement.setString(1, product.getName());
+            statement.setDouble(2, product.getPrice());
+            statement.setLong(3, product.getId());
             statement.execute();
-            return item;
+            return product;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't update product by id!", e);
+            throw new DataProcessingException("Can't update product by id: " + product.getId(), e);
         }
     }
 
@@ -96,7 +96,7 @@ public class ProductDaoJdbsImpl implements ProductDao {
             statement.setLong(1, id);
             return statement.executeUpdate() == 1;
         } catch (SQLException e) {
-            throw new DataProcessingException("Can't delete product by id!", e);
+            throw new DataProcessingException("Can't delete product by id: " + id, e);
         }
     }
 
