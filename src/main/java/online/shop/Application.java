@@ -13,5 +13,6 @@ public class Application {
         product.setPrice(23);
         System.out.println(productDaoJdbs.update(product));
         System.out.println(productDaoJdbs.getById(1L));
+        System.out.println(productDaoJdbs.deleteById(15L));
     }
 }

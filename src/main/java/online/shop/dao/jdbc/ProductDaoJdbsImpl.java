@@ -27,7 +27,7 @@ public class ProductDaoJdbsImpl implements ProductDao {
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
-                item.setId(resultSet.getLong("product_id"));
+                item.setId(resultSet.getLong(1));
             }
             return item;
         } catch (SQLException e) {
