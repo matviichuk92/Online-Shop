@@ -1,18 +1,21 @@
 package online.shop;
 
-import online.shop.dao.jdbc.ProductDaoJdbsImpl;
+import online.shop.dao.ProductDao;
+import online.shop.lib.Injector;
 import online.shop.model.Product;
 
 public class Application {
+    private static final Injector injector = Injector.getInstance("online.shop");
+
     public static void main(String[] args) {
-        ProductDaoJdbsImpl productDaoJdbs = new ProductDaoJdbsImpl();
+        ProductDao productDao = (ProductDao) injector.getInstance(ProductDao.class);
         Product product = new Product("melon", 35);
         product.setId(1L);
-        productDaoJdbs.create(product);
-        System.out.println(productDaoJdbs.getAll());
+        productDao.create(product);
+        System.out.println(productDao.getAll());
         product.setPrice(23);
-        System.out.println(productDaoJdbs.update(product));
-        System.out.println(productDaoJdbs.getById(1L));
-        System.out.println(productDaoJdbs.deleteById(15L));
+        System.out.println(productDao.update(product));
+        System.out.println(productDao.getById(1L));
+        System.out.println(productDao.deleteById(15L));
     }
 }

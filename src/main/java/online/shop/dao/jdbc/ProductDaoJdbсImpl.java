@@ -15,7 +15,7 @@ import online.shop.model.Product;
 import online.shop.util.ConnectionUtil;
 
 @Dao
-public class ProductDaoJdbsImpl implements ProductDao {
+public class ProductDaoJdbсImpl implements ProductDao {
     @Override
     public Product create(Product product) {
         try (Connection connection = ConnectionUtil.getConnection()) {
@@ -38,9 +38,8 @@ public class ProductDaoJdbsImpl implements ProductDao {
     @Override
     public Optional<Product> getById(Long id) {
         try (Connection connection = ConnectionUtil.getConnection()) {
-            String query = "SELECT * FROM product_table WHERE product_id = ? AND deleted=false;";
-            PreparedStatement statement =
-                    connection.prepareStatement(query);
+            String query = "SELECT * FROM product_table WHERE product_id = ? AND deleted = false;";
+            PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -72,9 +71,8 @@ public class ProductDaoJdbsImpl implements ProductDao {
     @Override
     public Product update(Product product) {
         try (Connection connection = ConnectionUtil.getConnection()) {
-            String query = "UPDATE product_table "
-                    + "SET name = ?, price = ? "
-                    + "WHERE product_id = ?;";
+            String query = "UPDATE product_table " +
+                    "SET name = ?, price = ? WHERE product_id = ? and deleted = false;";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, product.getName());
             statement.setDouble(2, product.getPrice());
@@ -89,8 +87,8 @@ public class ProductDaoJdbsImpl implements ProductDao {
     @Override
     public boolean deleteById(Long id) {
         try (Connection connection = ConnectionUtil.getConnection()) {
-            String query = "UPDATE product_table SET deleted=true "
-                    + "WHERE product_id = ? AND deleted=false;";
+            String query = "UPDATE product_table SET deleted = true "
+                    + "WHERE product_id = ? AND deleted = false;";
             PreparedStatement statement =
                     connection.prepareStatement(query);
             statement.setLong(1, id);

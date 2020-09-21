@@ -5,10 +5,8 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 import online.shop.dao.ProductDao;
 import online.shop.db.Storage;
-import online.shop.lib.Dao;
 import online.shop.model.Product;
 
-@Dao
 public class ProductDaoImpl implements ProductDao {
     @Override
     public Product create(Product product) {
