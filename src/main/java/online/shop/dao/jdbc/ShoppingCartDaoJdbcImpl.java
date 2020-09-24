@@ -123,8 +123,8 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
 
     private List<Product> getProductsInCart(Long cartId, Connection connection) throws SQLException {
         List<Product> products = new ArrayList<>();
-        String query = "SELECT * FROM products INNER JOIN shopping_carts_products "
-                + "ON products.product_id = shopping_carts_products.product_id "
+        String query = "SELECT * FROM products p INNER JOIN shopping_carts_products s "
+                + "ON p.product_id = s.product_id "
                 + "WHERE cart_id = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setLong(1, cartId);
