@@ -29,27 +29,5 @@ public class InjectDataController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        User admin = new User("Admin", "Admin", "123");
-        User roma = new User("Roma", "PapaCat", "123");
-        User mila = new User("Mila", "MamaCat", "123");
-        admin.setRoles(Set.of(Role.of("ADMIN")));
-        userService.create(admin);
-        roma.setRoles(Set.of(Role.of("USER")));
-        userService.create(roma);
-        mila.setRoles(Set.of(Role.of("USER")));
-        userService.create(mila);
-        Product banana = new Product("banana", 12.3);
-        Product melon = new Product("melon", 12.0);
-        productService.create(banana);
-        productService.create(melon);
-        ShoppingCart romaCart = new ShoppingCart(roma.getId());
-        ShoppingCart milaCart = new ShoppingCart(mila.getId());
-        shoppingCartService.create(romaCart);
-        shoppingCartService.create(milaCart);
-        shoppingCartService.addProduct(romaCart, banana);
-        shoppingCartService.addProduct(milaCart, melon);
-        orderService.completeOrder(romaCart);
-        orderService.completeOrder(milaCart);
-        req.getRequestDispatcher("/WEB-INF/views/inject-data.jsp").forward(req, resp);
     }
 }

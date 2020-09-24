@@ -1,10 +1,10 @@
 package online.shop.dao.jdbc;
 
-import java.sql.ResultSet;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +15,7 @@ import online.shop.model.Product;
 import online.shop.util.ConnectionUtil;
 
 @Dao
-public class ProductDaoJdbсImpl implements ProductDao {
+public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public Product create(Product product) {
         try (Connection connection = ConnectionUtil.getConnection()) {
@@ -55,7 +55,7 @@ public class ProductDaoJdbсImpl implements ProductDao {
     public List<Product> getAll() {
         List<Product> products = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection()) {
-            String query = "SELECT * FROM products;";
+            String query = "SELECT * FROM products WHERE deleted = false";
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
@@ -71,8 +71,8 @@ public class ProductDaoJdbсImpl implements ProductDao {
     @Override
     public Product update(Product product) {
         try (Connection connection = ConnectionUtil.getConnection()) {
-            String query = "UPDATE products " +
-                    "SET name = ?, price = ? WHERE product_id = ? and deleted = false;";
+            String query = "UPDATE products "
+                    + "SET name = ?, price = ? WHERE product_id = ? and deleted = false";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, product.getName());
             statement.setDouble(2, product.getPrice());
@@ -89,8 +89,7 @@ public class ProductDaoJdbсImpl implements ProductDao {
         try (Connection connection = ConnectionUtil.getConnection()) {
             String query = "UPDATE products SET deleted = true "
                     + "WHERE product_id = ? AND deleted = false;";
-            PreparedStatement statement =
-                    connection.prepareStatement(query);
+            PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             return statement.executeUpdate() == 1;
         } catch (SQLException e) {
