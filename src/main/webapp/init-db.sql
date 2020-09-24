@@ -68,6 +68,7 @@ CREATE TABLE `shop`.`orders_products` (
 CREATE TABLE `shop`.`shopping_cart` (
   `cart_id` BIGINT(11) NOT NULL,
   `user_id` BIGINT(11) NOT NULL,
+  `deleted` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (`cart_id`),
   INDEX `user_id_fk_cart_idx` (`user_id` ASC) VISIBLE,
   CONSTRAINT `user_id_fk_cart`
