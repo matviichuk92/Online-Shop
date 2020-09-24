@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import online.shop.dao.ShoppingCartDao;
 import online.shop.exception.DataProcessingException;
 import online.shop.lib.Dao;
@@ -91,7 +90,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, shoppingCart.getId());
             statement.executeUpdate();
-            addProductsToCart(shoppingCart);
+            addProductsToCart(shoppingCart, connection);
             return shoppingCart;
         } catch (SQLException e) {
             throw new DataProcessingException("Can't update shopping cart : " + shoppingCart, e);
@@ -105,8 +104,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
                     + "AND deleted = false";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
-            statement.executeUpdate();
-            return true;
+            return statement.executeUpdate() == 1;
         } catch (SQLException e) {
             throw new DataProcessingException("Can`t delete shopping cart by id : " + id, e);
         }
@@ -140,18 +138,13 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         return products;
     }
 
-    private void addProductsToCart(ShoppingCart shoppingCart) {
-        try (Connection connection = ConnectionUtil.getConnection()) {
+    private void addProductsToCart(ShoppingCart shoppingCart, Connection connection) throws SQLException {
             String query = "INSERT INTO shopping_carts_products (cart_id, product_id) values(?,?)";
             PreparedStatement statement = connection.prepareStatement(query);
             for (Product product : shoppingCart.getProducts()) {
                 statement.setLong(1, shoppingCart.getId());
                 statement.setLong(2, product.getId());
                 statement.executeUpdate();
-            }
-        } catch (SQLException e) {
-            throw new DataProcessingException("Can't add products to shopping cart : "
-                    + shoppingCart, e);
         }
     }
 }

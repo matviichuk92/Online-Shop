@@ -99,6 +99,8 @@ public class UserDaoJdbcImpl implements UserDao {
             statement.setString(3, user.getPassword());
             statement.setLong(4, user.getId());
             statement.executeUpdate();
+            deleteUserRoles(user, connection);
+            addUserRoles(user, connection);
             return user;
         } catch (SQLException e) {
             throw new DataProcessingException("Can't create user : " + user, e);
@@ -131,7 +133,6 @@ public class UserDaoJdbcImpl implements UserDao {
 
     private Set<Role> getUserRole(Long userId, Connection connection) throws SQLException {
         Set<Role> roles = new HashSet<>();
-
         String query = "SELECT role_name FROM roles INNER JOIN users_roles "
                 + "ON users_roles.role_id = roles.role_id "
                 + "WHERE users_roles.user_id = ?";
@@ -160,10 +161,20 @@ public class UserDaoJdbcImpl implements UserDao {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, roleName.name());
             ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-            return resultSet.getLong("role_id");
+            Long role_id = 0L;
+            if (resultSet.next()) {
+                role_id = resultSet.getLong("role_id");
+            }
+            return role_id;
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get the role by id : " + roleName, e);
         }
+    }
+
+    private void deleteUserRoles(User user, Connection connection) throws SQLException {
+        String query = "DELETE FROM users_roles WHERE user_id = ?";
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setLong(1, user.getId());
+        statement.executeUpdate();
     }
 }
