@@ -104,7 +104,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
                     + "AND deleted = false";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
-            return statement.executeUpdate() == 1;
+            return statement.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new DataProcessingException("Can`t delete shopping cart by id : " + id, e);
         }

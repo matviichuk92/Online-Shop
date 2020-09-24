@@ -105,7 +105,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             String query = "UPDATE orders SET deleted = true WHERE order_id = ? AND deleted = false";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
-            return statement.executeUpdate() == 1;
+            return statement.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new DataProcessingException("Can't delete order by id: " + id, e);
         }

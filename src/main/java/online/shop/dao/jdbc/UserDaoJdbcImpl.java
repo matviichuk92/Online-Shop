@@ -21,9 +21,10 @@ import online.shop.util.ConnectionUtil;
 public class UserDaoJdbcImpl implements UserDao {
     @Override
     public Optional<User> findByLogin(String login) {
+        PreparedStatement statement = null;
         try (Connection connection = ConnectionUtil.getConnection()) {
             String query = "SELECT * FROM users WHERE login = ?";
-            PreparedStatement statement = connection.prepareStatement(query);
+            statement = connection.prepareStatement(query);
             statement.setString(1, login);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -50,6 +51,7 @@ public class UserDaoJdbcImpl implements UserDao {
                 user.setId(resultSet.getLong(1));
             }
             addUserRoles(user, connection);
+            statement.close();
             return user;
         } catch (SQLException e) {
             throw new DataProcessingException("Can't create user : " + user, e);
@@ -113,7 +115,7 @@ public class UserDaoJdbcImpl implements UserDao {
             String query = "UPDATE users SET deleted = true WHERE user_id = ? AND deleted = false";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
-            return statement.executeUpdate() == 1;
+            return statement.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new DataProcessingException("Can't deleted the user by id: " + id, e);
         }
