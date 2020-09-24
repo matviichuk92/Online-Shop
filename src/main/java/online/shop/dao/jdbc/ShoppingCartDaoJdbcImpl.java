@@ -99,6 +99,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
 
     @Override
     public boolean deleteById(Long id) {
+        deleteProducts(id);
         try (Connection connection = ConnectionUtil.getConnection()) {
             String query = "DELETE FROM shopping_cart WHERE cart_id = ?";
             PreparedStatement statement = connection.prepareStatement(query);
@@ -154,6 +155,18 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         } catch (SQLException e) {
             throw new DataProcessingException("Can't add products to shopping cart : "
                     + shoppingCart, e);
+        }
+    }
+
+    private boolean deleteProducts(Long shoppingCartId) {
+        String query = "DELETE FROM shopping_carts_products WHERE cart_id = ?";
+        try (Connection connection = ConnectionUtil.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setLong(1, shoppingCartId);
+            return statement.executeUpdate() != 0;
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't add products to shopping cart : "
+                    + shoppingCartId, e);
         }
     }
 }
