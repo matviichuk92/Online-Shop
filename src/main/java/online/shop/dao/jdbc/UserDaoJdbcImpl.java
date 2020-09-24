@@ -21,10 +21,9 @@ import online.shop.util.ConnectionUtil;
 public class UserDaoJdbcImpl implements UserDao {
     @Override
     public Optional<User> findByLogin(String login) {
-        PreparedStatement statement = null;
         try (Connection connection = ConnectionUtil.getConnection()) {
             String query = "SELECT * FROM users WHERE login = ?";
-            statement = connection.prepareStatement(query);
+            PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, login);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -51,7 +50,6 @@ public class UserDaoJdbcImpl implements UserDao {
                 user.setId(resultSet.getLong(1));
             }
             addUserRoles(user, connection);
-            statement.close();
             return user;
         } catch (SQLException e) {
             throw new DataProcessingException("Can't create user : " + user, e);
