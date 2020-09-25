@@ -2,6 +2,7 @@ package online.shop.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ShoppingCart {
     private Long id;
@@ -40,5 +41,20 @@ public class ShoppingCart {
     @Override
     public String toString() {
         return "ShoppingCart{" + "id=" + id + ", products=" + products + ", userId=" + userId + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ShoppingCart that = (ShoppingCart) o;
+        return id.equals(that.id) &&
+                products.equals(that.products) &&
+                userId.equals(that.userId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, products, userId);
     }
 }
