@@ -38,12 +38,13 @@ public class UserDaoJdbcImpl implements UserDao {
     @Override
     public User create(User user) {
         try (Connection connection = ConnectionUtil.getConnection()) {
-            String query = "INSERT INTO users(name, login, password) values(?, ?, ?)";
+            String query = "INSERT INTO users(name, login, password, salt) values(?, ?, ?, ?)";
             PreparedStatement statement =
                     connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, user.getName());
             statement.setString(2, user.getLogin());
             statement.setString(3, user.getPassword());
+            statement.setBytes(4, user.getSalt());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -91,13 +92,14 @@ public class UserDaoJdbcImpl implements UserDao {
     @Override
     public User update(User user) {
         try (Connection connection = ConnectionUtil.getConnection()) {
-            String query = "UPDATE users SET name = ?, login = ?, password = ? WHERE user_id = ?"
-                    + "AND deleted = false";
+            String query = "UPDATE users SET name = ?, login = ?, password = ?, salt = ?"
+                    + " WHERE user_id = ? AND deleted = false";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, user.getName());
             statement.setString(2, user.getLogin());
             statement.setString(3, user.getPassword());
-            statement.setLong(4, user.getId());
+            statement.setBytes(4, user.getSalt());
+            statement.setLong(5, user.getId());
             statement.executeUpdate();
             deleteUserRoles(user, connection);
             addUserRoles(user, connection);
@@ -119,13 +121,16 @@ public class UserDaoJdbcImpl implements UserDao {
         }
     }
 
-    private User getUserFromResultSet(ResultSet resultSet, Connection connection) throws SQLException {
+    private User getUserFromResultSet(ResultSet resultSet, Connection connection)
+            throws SQLException {
         Long id = resultSet.getLong("user_id");
         String name = resultSet.getString("name");
         String login = resultSet.getString("login");
         String password = resultSet.getString("password");
+        byte[] salt = resultSet.getBytes("salt");
         Set<Role> roles = getUserRole(id, connection);
         User user = new User(name, login, password);
+        user.setSalt(salt);
         user.setId(id);
         user.setRoles(roles);
         return user;
@@ -162,7 +167,7 @@ public class UserDaoJdbcImpl implements UserDao {
             statement.setString(1, roleName.name());
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-               return resultSet.getLong("role_id");
+                return resultSet.getLong("role_id");
             }
             throw new RuntimeException("Can't get role id for : " + roleName);
         } catch (SQLException e) {

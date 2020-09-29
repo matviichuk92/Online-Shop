@@ -13,6 +13,7 @@ CREATE TABLE `shop`.`users` (
   `login` VARCHAR(256) NOT NULL,
   `password` VARCHAR(256) NOT NULL,
   `deleted` TINYINT NOT NULL DEFAULT 0,
+  `salt` VARBINARY(16) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `login_UNIQUE` (`login` ASC) VISIBLE);
 

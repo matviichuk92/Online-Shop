@@ -110,7 +110,8 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         }
     }
 
-    private ShoppingCart getCartFromResultSet(ResultSet resultSet, Connection connection) throws SQLException {
+    private ShoppingCart getCartFromResultSet(ResultSet resultSet, Connection connection)
+            throws SQLException {
         Long cartId = resultSet.getLong("cart_id");
         Long userId = resultSet.getLong("user_id");
         ShoppingCart shoppingCart = new ShoppingCart(userId);
@@ -119,7 +120,8 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         return shoppingCart;
     }
 
-    private List<Product> getProductsInCart(Long cartId, Connection connection) throws SQLException {
+    private List<Product> getProductsInCart(Long cartId, Connection connection)
+            throws SQLException {
         List<Product> products = new ArrayList<>();
         String query = "SELECT * FROM products p INNER JOIN shopping_carts_products s "
                 + "ON p.product_id = s.product_id "
@@ -138,13 +140,14 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         return products;
     }
 
-    private void addProductsToCart(ShoppingCart shoppingCart, Connection connection) throws SQLException {
-            String query = "INSERT INTO shopping_carts_products (cart_id, product_id) values(?,?)";
-            PreparedStatement statement = connection.prepareStatement(query);
-            for (Product product : shoppingCart.getProducts()) {
-                statement.setLong(1, shoppingCart.getId());
-                statement.setLong(2, product.getId());
-                statement.executeUpdate();
+    private void addProductsToCart(ShoppingCart shoppingCart, Connection connection)
+            throws SQLException {
+        String query = "INSERT INTO shopping_carts_products (cart_id, product_id) values(?,?)";
+        PreparedStatement statement = connection.prepareStatement(query);
+        for (Product product : shoppingCart.getProducts()) {
+            statement.setLong(1, shoppingCart.getId());
+            statement.setLong(2, product.getId());
+            statement.executeUpdate();
         }
     }
 }

@@ -43,12 +43,15 @@ public class Product {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Product product = (Product) o;
-        return Double.compare(product.price, price) == 0 &&
-                id.equals(product.id) &&
-                name.equals(product.name);
+        return Double.compare(product.price, price) == 0
+                && id.equals(product.id) && name.equals(product.name);
     }
 
     @Override

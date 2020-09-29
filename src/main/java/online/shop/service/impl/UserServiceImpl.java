@@ -7,6 +7,7 @@ import online.shop.lib.Inject;
 import online.shop.lib.Service;
 import online.shop.model.User;
 import online.shop.service.UserService;
+import online.shop.util.HashUtil;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -15,6 +16,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(User user) {
+        user.setSalt(HashUtil.getSalt());
+        user.setPassword(HashUtil.hashPassword(user.getPassword(), user.getSalt()));
         return userDao.create(user);
     }
 

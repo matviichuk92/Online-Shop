@@ -45,12 +45,15 @@ public class ShoppingCart {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         ShoppingCart that = (ShoppingCart) o;
-        return id.equals(that.id) &&
-                products.equals(that.products) &&
-                userId.equals(that.userId);
+        return id.equals(that.id) && products.equals(that.products)
+                && userId.equals(that.userId);
     }
 
     @Override
