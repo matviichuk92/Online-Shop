@@ -17,6 +17,12 @@
                 <c:out value="${order.id}"/>
             </td>
             <td>
+                <c:out value="${order.products}"/>
+            </td>
+            <td>
+                <c:out value="${order.userId}"/>
+            </td>
+            <td>
                 <a href="${pageContext.request.contextPath}/order/details?id=${order.id}">details</a>
             </td>
         </tr>

@@ -29,9 +29,5 @@
 <br>
 <form action="${pageContext.request.contextPath}/">
     <input type="submit" value="Back to main page"><br></form>
-<form action="${pageContext.request.contextPath}/orders/all">
-    <input type="submit" value="Back to all orders"><br></form>
-<form action="${pageContext.request.contextPath}/orders">
-    <input type="submit" value="Back to all orders Admin"><br></form>
 </body>
 </html>

@@ -21,11 +21,11 @@ public class OrderDaoJdbcImpl implements OrderDao {
     public List<Order> getUserOrders(Long userId) {
         List<Order> orders = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection()) {
-            String query = "SELECT * FROM orders WHERE user_id = ?";
+            String query = "SELECT * FROM orders WHERE user_id = ? AND deleted = false";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, userId);
             ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 orders.add(getOrderFromResultSet(resultSet, connection));
             }
             return orders;
@@ -76,7 +76,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
             String query = "SELECT * FROM orders WHERE deleted = false";
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 orders.add(getOrderFromResultSet(resultSet, connection));
             }
             return orders;
