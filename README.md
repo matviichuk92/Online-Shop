@@ -2,37 +2,38 @@
 __________________
 **Project purpose**
 __________________
-Create online project on base localhost with connection to DataBase 
-with next functionality:
-- register users and save password in hashing view in DB;
-- access to pages according to roles(user and admin);
-- users can: look through products and add it to own cart, edit cart, 
-create orders and see all own orders;
-- admin have access to all information about users, orders, products with ability to edit and delete them.
+An online project in the form of an internet shop prototype with a connection to a database (DB).
+The shop presented in this project has the following functionality:
+- registering users and saving hashed passwords in the DB;
+- role-based access to pages for users and admins;
+- users can: look through the products in the store and add them to their cart, edit the cart, 
+place orders, and see all their previous orders;
+- admins have access to all information about the users, their orders, and products in the store,
+which they can edit and delete.
 ___________________________
 
 **Project structure and details**
 _________________
-Project have N-tier architecture: 
+The project has an N-tier architecture: 
 - controller(request processing and response sending);
 - service(business logic);
 - DAO(CRUD operation with DB);
 
-Also, four major entities: Product, User, ShoppingCart and Order.
+The project also features four major entities: Product, User, ShoppingCart and Order.
  
-Project correspond to SOLID, KISS and DRY principles. It's created with Java EE, MySQL, Maven, Apache Tomcat.
+The project follows to SOLID, KISS, and DRY principles. It was created with Java EE, MySQL, Maven, and Apache Tomcat.
 _______________ 
 **Launch guide**
 __________________
-- Fork project;
+- Download the project to your machine;
 - Add Maven;
 - Download Tomcat from _tomcat.apache.org_, unzip, add it to _install package_, add the new configuration
 (if you use IntelJ) TomCat Server(choose "Local" and point install package) in project, 
 choose the artifact _war-exploded_, in _application context_ field just put slash symbol;
 - Using MySQL Workbench 8.0 CE create a schema and tables as specified in init-db.sql;
-- Register like regular user;
-- Log in to site and push button "Inject data" and check user functionality;
-- Logout and log in like admin(login - boss, password - 123) and check admin functionality;
+- Launch the project using the Tomcat Server;
+- Log in to the website, click on the button "Inject data" and check the user functionality;
+- Logout and log in as an admin using login "boss" and password "123" and check the admin functionality;
 ____________________________________
 **Roman Matviichuk**
 **matviihuk.office@gmail.com**
