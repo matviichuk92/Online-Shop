@@ -35,5 +35,5 @@ choose the artifact _war-exploded_, in _application context_ field just put slas
 - Log in to the website, click on the button "Inject data" and check the user functionality;
 - Logout and log in as an admin using login "boss" and password "123" and check the admin functionality;
 ____________________________________
-**Roman Matviichuk**
-**matviihuk.office@gmail.com**
+
+[my gitHub]: https://github.com/matviichuk92

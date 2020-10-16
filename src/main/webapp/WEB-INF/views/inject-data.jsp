@@ -8,7 +8,6 @@
     <h3>Admin login is boss .</h3>
         <h3>Admin password is 123 .</h3>
             <h3>Please, logout and enter as admin to see admin functionality </h3>
-</body>
 </center>
 <form action="${pageContext.request.contextPath}/">
     <input type="submit" value="Back to main page"><br></form>
