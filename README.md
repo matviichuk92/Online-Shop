@@ -36,4 +36,4 @@ choose the artifact _war-exploded_, in _application context_ field just put slas
 - Logout and log in as an admin using login "boss" and password "123" and check the admin functionality;
 ____________________________________
 
-[my gitHub]: https://github.com/matviichuk92
+[my gitHub](https://github.com/matviichuk92)
